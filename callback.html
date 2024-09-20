@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callback</title>
+</head>
+<body>
+    <h1>Welcome to callback function tutorial</h1>
+    <script>
+        function doHomeWork(subject, callback){
+            console.log('Doing homework for ${subject}...');
+            callback();
+        }
+        doHomeWork("Math", function(){
+            console.log("Finished Homework");
+        });
+
+        do_sum(10,20, function(result){
+            document.write(result);
+        });
+        function do_sum(num1, num2, callback){
+            var sum=0;
+            sum=num1+num2;
+            callback(sum)
+        }
+    </script>
+</body>
+</html>
