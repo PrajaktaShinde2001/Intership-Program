@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synchronus</title>
+</head>
+<body>
+    <h1>Hello</h1>
+    <script>
+        console.log("Step 1: Jollof Rice");
+        console.log("Step 2: Tea");
+        console.log("Step 3: Noodles");
+        console.log("Step 4: Biryani");
+
+        function someLongRunningFunction(){
+            let start = Date.now();
+            while(Date.now() - start < 5000){
+
+            }
+            return "Hello";
+        }
+        console.log('Starting...');
+
+        let result = someLongRunningFunction();
+        console.log(result);
+
+        console.log('...Finishing');
+    </script>
+</body>
+</html>
