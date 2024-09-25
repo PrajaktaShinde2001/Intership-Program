@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let getFlour=new Promise((resolve, reject)=>{
+            setTimeout(()=>resolve("Flour is here"),1000);
+        });
+        let getEgg=new Promise((resolve, reject)=>{
+            setTimeout(()=>resolve("Egg is here"),1000);
+        });
+        let getSugar=new Promise((resolve, reject)=>{
+            setTimeout(()=>resolve("Sugar is here"),1000);
+        });
+        Promise.all([getFlour, getEgg, getSugar])
+        .then((results)=>{
+            console.log(results);
+            console.log("Your cake is ready");
+        })
+        .catch((error)=>{
+            console.log(error)
+        });
+    </script>
+</body>
+</html>
