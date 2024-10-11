@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Lexical scope is when a function can look outside of their function to find a variablein the parent scope.  -->
+
+    <script>
+        function parent(){
+            let gadget="skateboard";
+            function child(){
+                console.log(gadget)
+            }
+            child();
+        }
+        parent();
+    </script>
+</body>
+</html>
