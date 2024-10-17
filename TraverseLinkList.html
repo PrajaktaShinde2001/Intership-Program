@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Node{
+            constructor(data){
+                this.prev=null;
+                this.data=data;
+                this.next=null;
+            }
+        }
+        class DoublyLinkedList{
+            constructor(){
+                this.head=null;
+                this.size=0;
+            }
+            insertEnd(data){
+                var node=new Node(data);
+                if(this.head===null){
+                    this.head=node;
+                }
+                else{
+                    var current=this.head;
+                    while(current.next!==null){
+                        current=current.next;
+                    }
+                    current.next=node;
+                    node.prev=current;
+                }
+                this.size++;
+            }
+            traverse(){
+                if(this.head===null){
+                    console.log("List is Empty");
+                }
+                else{
+                    var n=this.head;
+                    while(n.next!==null){
+                        console.log(n.data);
+                        n=n.next;
+                    }
+                    console.log(n.data);
+                }
+            }
+        }
+        const fruits=new DoublyLinkedList();
+        fruits.insertEnd("Grapes");
+        fruits.insertEnd("Orange");
+        fruits.insertEnd("Kiwi");
+        fruits.insertEnd("Mango");
+        fruits.traverse();
+    </script>
+</body>
+</html>
