@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class TreeNode{
+            constructor(element){
+                this.element=element;
+                this.left=null;
+                this.right=null;
+            }
+        }
+        class BinarySearchTree{
+            constructor(compareFun=(a,b)=>(a<b ? -1 : a>b ? 1:0)){
+                this.root=null;
+                this.compareFun=compareFun;
+            }
+            insert(element){
+                if(element === null){
+                    return false;
+                }
+                if(this.root === null){
+                    this.root = new TreeNode(element);
+                }
+                else{
+                    this.insertNode(element, this.root);
+                }
+                return true;
+            }
+            insertNode(element, node){
+                if(this.compareFun(element, node.element) === -1){
+                    if(node.left === null){
+                        node.left = new TreeNode(element);
+                    }
+                    else{
+                        this.insertNode(element, node.left);
+                    }
+                }
+                else if(this.compareFun(element, node.element) === 1){
+                    if(node.right === null){
+                        node.right = new TreeNode(element);
+                    }
+                    else {
+                        this.insertNode(element, node.right);
+                    }
+                }
+            }
+            remove(element){
+                this.root =  this.removeNode(this.root, element);
+            }
+            removeNode(node, element){
+                if(node == null){
+                    return null;
+                }
+                if(this.compareFun(element, node.element) == -1){
+                    node.left = this.removeNode(node.left, element);
+                    return node;
+                }
+                else if(this.compareFun(element, node.element) == 1){
+                    node.right = this.removeNode(node.right, element);
+                    return node;
+                }
+                else{
+                    // node with no leaf nodes
+                    if(node.left == null && node.right == null){
+                        node = null;
+                        return node;
+                    }
+                    // node with one node (no left node)
+                    if(node.left == null){
+                        node = node.right;
+                        return node;
+                    }
+                    // node with one node (no right node)
+                    else if(node.right == null){
+                        node = node.left;
+                        return node;
+                    }
+                    // node with two nodes
+                    // get the inorder successor (smallest in the right subtree)
+                    let aux = this.findMinBode(node.right);
+                    node.element = aux.element;
+
+                    node.right = this.removeNode(node.right, aux.element);
+                    return node;
+                }
+            }
+            findMinBode(node){
+                while(node && node.left !==null){
+                    node = node.left;
+                }
+                return node;
+            }
+            search(element){
+                return this.searchNode(this.root, element);
+            }
+            searchNode(node, element){
+                if(node == null){
+                    return false;
+                }
+                if(this.compareFun(element, node.element) === -1){
+                    return this.searchNode(node.left, element);
+                }
+                else if(this.compareFun(element, node.element) === 1){
+                    return this.searchNode(node.right, element);
+                }
+                else{
+                    return true;
+                }
+            }
+        }
+        const bst = new BinarySearchTree();
+        bst.insert(10);
+        bst.insert(120);
+        bst.insert(1);
+        bst.remove(10);
+        console.log(bst);
+        console.log(bst.search(5));
+        console.log(bst.search(10));
+    </script>
+</body>
+</html>
