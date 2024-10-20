@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class TreeNode{
+            constructor(element){
+                this.element=element;
+                this.left=null;
+                this.right=null;
+            }
+        }
+        class BinarySearchTree{
+            constructor(compareFun=(a,b)=>(a<b ? -1 : a>b ? 1:0)){
+                this.root=null;
+                this.compareFun=compareFun;
+            }
+            insert(element){
+                if(element === null){
+                    return false;
+                }
+                if(this.root === null){
+                    this.root = new TreeNode(element);
+                }
+                else{
+                    this.insertNode(element, this.root);
+                }
+                return true;
+            }
+            insertNode(element, node){
+                if(this.compareFun(element, node.element) === -1){
+                    if(node.left === null){
+                        node.left = new TreeNode(element);
+                    }
+                    else{
+                        this.insertNode(element, node.left);
+                    }
+                }
+                else if(this.compareFun(element, node.element) === 1){
+                    if(node.right === null){
+                        node.right = new TreeNode(element);
+                    }
+                    else {
+                        this.insertNode(element, node.right);
+                    }
+                }
+            }
+        }
+        const bst = new BinarySearchTree();
+        bst.insert(10);
+        bst.insert(120);
+        bst.insert(1);
+        console.log(bst);
+    </script>
+</body>
+</html>
