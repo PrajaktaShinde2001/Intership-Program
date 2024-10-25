@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let setA=new Set([1,2,3]);
+        let setB=new Set([3,4,5]);
+        //Common element
+        let intersectionSet=new Set ([...setA].filter(x=>setB.has(x)));
+        console.log(intersectionSet);
+    </script>
+</body>
+</html>
