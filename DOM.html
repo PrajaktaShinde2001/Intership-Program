@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+<body>
+    <h1 id="heading">Hello World</h1>
+    <p class="paragraph">This is paragraph</p>
+    <p class="paragraph">This is second paragraph</p>
+    <input type="text" name="username" value="prajakta">
+    <div class="container">
+        <span class="item">Item 1</span>
+        <span class="item">Item 2</span>
+    </div>
+
+    <script>
+        // 1. getElementById
+        const heading=document.getElementById("heading");
+        console.log("getElementById:", heading.innerText);
+
+        // 2.getElementByName
+        const usernameInput=document.getElementsByName("username")[0];
+        console.log(usernameInput.value);
+
+        // 3. getElementByTagName
+        const paragraph=document.getElementsByTagName("p");
+        console.log("paragraph")
+            for(let p of paragraph){
+                console.log(p.innerText);
+        }
+
+    </script>
+</body>
+</html>
