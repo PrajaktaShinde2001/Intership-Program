@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form align="center">
+        <table border="1px" align="center">
+            <h1>Registration form</h1>
+            <thead>
+                <tr>
+                    <th>student name</th>
+                    <td><input type="text" pattern="[A-Z a-z]+$" required></td>
+                </tr>
+                <tr>
+                    <th>father name</th>
+                    <td><input type="text" pattern="[A-Z a-z]+$" required></td>
+                </tr>
+                <tr>
+                    <th>mother name</th>
+                    <td><input type="text" pattern="[A-Z a-z]+$" required></td>
+                </tr>
+                <tr>
+                    <th>email</th>
+                    <td><input type="text" pattern="[A-Z a-z 0-9 @ .com]+$" required></td>
+                </tr>
+                <tr>
+                    <th>date of birth</th>
+                    <td><input type="date" required></td>
+                </tr>
+                <tr>
+                    <th>gender</th>
+                    <td><input type="radio" name="gender" value="male">male
+                        <input type="radio" name="gender" value="female">female
+                    </td>
+                </tr>
+                <tr>
+                    <th>mobile no</th>
+                    <td><input type="number" name="number" required></td>
+                </tr>
+                <tr>
+                    <th>address</th>
+                    <td><textarea name="" cols="15" rows="5"></textarea></td>
+                </tr>
+                <tr>
+                    <th>state</th>
+                    <td><input type="text" required></td>
+                </tr>
+                <tr>
+                    <th>city</th>
+                    <td><input type="text" required></td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td><input type="submit" value="submit"></td>
+                </tr>
+            </thead>
+        </table>
+    </form>
+</body>
+</html>
