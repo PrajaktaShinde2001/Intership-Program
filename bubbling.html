@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubbling</title>
+</head>
+<body>
+    <div class="grandparent">
+        <div class="parent">
+            <div class="child">
+                <button id="myButton">Click me!</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const grandparent=document.querySelector(".grandparent");
+        const parent=document.querySelector(".parent");
+        const child=document.querySelector(".child");
+        grandparent.addEventListener("click", function(){
+            alert("grandparent element clicked");
+        })
+        parent.addEventListener("click", function(){
+            alert("parent element clicked");
+        })
+        child.addEventListener("click", function(){
+            alert("child element clicked");
+        })
+    </script>
+</body>
+</html>
