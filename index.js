@@ -1,13 +1,17 @@
-const express = require('express');
-const app = express();
-const PORT = 5000;
+const os = require('os') // import os module from npm, it is build in module
 
-// Basic route
-app.get('/', (req, res) =>{
-    res.send('Hello worldddddddd!');
-});
+console.log("Cpu architecture :" +os.arch()) // return cpu architecture
 
-//Start the server
-app.listen(PORT, () =>{
-    console.log('Server is running on http://localhost:${5000}');
-});
+console.log("Free memory :" +os.freemem())
+
+console.log("Total memeory :" +os.totalmem())
+
+console.log("Hostname :" +os.hostname())
+
+console.log("operating system name" +os.type())
+
+console.log("Operating sysytem platform" +os.platform())
+
+console.log("os release :" +os.release())
+
+console.log("os default directory for temp files :" +os.tmpdir())
