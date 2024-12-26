@@ -1,17 +1,17 @@
-const os = require('os') // import os module from npm, it is build in module
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-console.log("Cpu architecture :" +os.arch()) // return cpu architecture
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
 
-console.log("Free memory :" +os.freemem())
-
-console.log("Total memeory :" +os.totalmem())
-
-console.log("Hostname :" +os.hostname())
-
-console.log("operating system name" +os.type())
-
-console.log("Operating sysytem platform" +os.platform())
-
-console.log("os release :" +os.release())
-
-console.log("os default directory for temp files :" +os.tmpdir())
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
