@@ -3,48 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculate me! - A Calculator made my me</title>
-    <link rel="stylesheet" href="/calculator project/style.css">
+    <title>QR Code Generator</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <h1 class="text-center">Welcome to calculate me!</h1>
-    <div class="container flex flex-col items-center mx-auto">
-        <div class="row">
-            <input type="text" class="input">
-        </div>
-        <div class="row">
-            <button class="button">C</button>
-            <button class="button">%</button>
-            <button class="button">M+</button>
-            <button class="button">M-</button>
-        </div>
-        <div class="row">
-            <button class="button">7</button>
-            <button class="button">8</button>
-            <button class="button">9</button>
-            <button class="button">*</button>
-        </div>
-        <div class="row">
-            <button class="button">4</button>
-            <button class="button">5</button>
-            <button class="button">6</button>
-            <button class="button">/</button>
-        </div>
-        <div class="row">
-            <button class="button">1</button>
-            <button class="button">2</button>
-            <button class="button">3</button>
-            <button class="button">+</button>
-        </div>
-        <div class="row">
-            <button class="button">0</button>
-            <button class="button">.</button>
-            <button class="button">=</button>
-            <button class="button">-</button>
-        </div>
-    </div>
-    
+    <div class="container">
+        <div class="box">
+            <section class="upper">
+                <h1>QR Code Generator</h1>
+                <p>Paste text to create QR code</p>
+            </section>
 
-    <script src="/calculator project/script.js"></script>
+            <form id="qrForm">
+                <input id="qrInputText" type="text" name="qrText" placeholder="Enter text">
+                <button type="submit">Generate QR Code</button>
+            </form>
+
+            <section id="qrContainer" class="qr_container">
+                <img id="qrImage" src="./qr.webp" alt="QR Code">
+            </section>
+        </div>
+    </div> 
+    
+    <script src="./script.js"></script>
+
 </body>
 </html>
