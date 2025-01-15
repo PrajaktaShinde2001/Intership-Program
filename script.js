@@ -1,19 +1,33 @@
-let string="";
-let buttons=document.querySelectorAll('.button');
-Array.from(buttons).forEach((button)=>{
-    button.addEventListener('click',(e)=>{
-        if(e.target.innerHTML == '='){
-            string=eval(string);
-            document.querySelector('input').value=string;
-        }
-        else if(e.target.innerHTML == 'C'){
-            string="";
-            document.querySelector('input').value=string;
-        }
-        else{
-            console.log(e.target)
-            string=string + e.target.innerHTML;
-            document.querySelector('input').value=string;
-        }
-    })
-})
+const qrFormEl = document.getElementById("qrForm");
+const qrImageEl = document.getElementById("qrImage");
+const qrContainerEl = document.getElementById("qrContainer");
+const qrInputTextEl = document.getElementById("qrInputText");
+
+const renderQRCode = (url) => {
+  if (!url) return;
+  qrImageEl.src = url;
+
+  const onImageLoad = () => {
+    const interval = setInterval(() => {
+      qrContainerEl.classList.add("show");
+      clearInterval(interval);
+    }, 500);
+  };
+
+  qrImageEl.addEventListener("load", onImageLoad);
+};
+
+qrFormEl.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(qrFormEl);
+  const text = formData.get("qrText");
+  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${text}`;
+
+  renderQRCode(qrCodeUrl);
+});
+qrInputTextEl.addEventListener("keyup", () => {
+  if (!qrInputTextEl.value.trim()) {
+    qrContainerEl.classList.remove("show");
+  }
+});
