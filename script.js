@@ -1,33 +1,75 @@
-const qrFormEl = document.getElementById("qrForm");
-const qrImageEl = document.getElementById("qrImage");
-const qrContainerEl = document.getElementById("qrContainer");
-const qrInputTextEl = document.getElementById("qrInputText");
+const apikey="a727bf3de3c1193e0af54c83c9346b94";
+const apiUrl="https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
 
-const renderQRCode = (url) => {
-  if (!url) return;
-  qrImageEl.src = url;
+const searchBox = document.querySelector(".search input");
+const searchBtn = document.querySelector(".search button");
+const weatherIcon = document.querySelector(".weather-icon");
 
-  const onImageLoad = () => {
-    const interval = setInterval(() => {
-      qrContainerEl.classList.add("show");
-      clearInterval(interval);
-    }, 500);
-  };
+async function checkWeather(city){
+    const response = await fetch(apiUrl + city + `&appid=${apikey}`);
 
-  qrImageEl.addEventListener("load", onImageLoad);
-};
+    if(response.status == 404){
+        document.querySelector(".error").style.display = "block";
+        document.querySelector(".weather").style.display = "none";
+    }
+    else{
 
-qrFormEl.addEventListener("submit", (event) => {
-  event.preventDefault();
+        var data = await response.json();
 
-  const formData = new FormData(qrFormEl);
-  const text = formData.get("qrText");
-  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${text}`;
+        document.querySelector(".city").innerHTML = data.name;
+        document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°c";
+        document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+        document.querySelector(".wind").innerHTML = data.wind.speed + "km/h";
+        
+        if(data.weather[0].main == "Clouds"){
+            weatherIcon.src = "./img/clouds.png";
+        }
+        else if(data.weather[0].main == "Clear"){
+            weatherIcon.src = "./img/clear.png";
+        } 
+        else if(data.weather[0].main == "Rain"){
+            weatherIcon.src = ".img/rain.png";
+        } 
+        else if(data.weather[0].main == "Drizzle"){
+            weatherIcon.src = ".img/drizzle.png";
+        } 
+        else if(data.weather[0].main == "Mist"){
+            weatherIcon.src = ".img/mist.png";
+        } 
 
-  renderQRCode(qrCodeUrl);
-});
-qrInputTextEl.addEventListener("keyup", () => {
-  if (!qrInputTextEl.value.trim()) {
-    qrContainerEl.classList.remove("show");
-  }
-});
+        document.querySelector(".weather").style.display = "block";
+        document.querySelector(".error").style.display = "none";
+
+    }
+
+    var data = await response.json();
+
+
+    document.querySelector(".city").innerHTML = data.name;
+    document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°c";
+    document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+    document.querySelector(".wind").innerHTML = data.wind.speed + "km/h";
+
+    if(data.weather[0].main == "Clouds"){
+        weatherIcon.src = "./img/clouds.png";
+    }
+    else if(data.weather[0].main == "Clear"){
+        weatherIcon.src = "./img/clear.png";
+    } 
+    else if(data.weather[0].main == "Rain"){
+        weatherIcon.src = ".img/rain.png";
+    } 
+    else if(data.weather[0].main == "Drizzle"){
+        weatherIcon.src = ".img/drizzle.png";
+    } 
+    else if(data.weather[0].main == "Mist"){
+        weatherIcon.src = ".img/mist.png";
+    } 
+
+    document.querySelector(".weather").style.display = "block";
+
+}
+
+searchBtn.addEventListener("click", ()=>{
+    checkWeather(searchBox.value);
+})
