@@ -1,24 +1,14 @@
-import React, {Component} from 'react';
-import {Link} from "react-router-dom";
+import React from 'react'
 import './Navbar.css'
+import {assets} from '../../assets/assets'
 
-class Navbar extends Component {
-    render() {
-        return (
-            <nav className='navbar'>
-                <ul>
-                    <li>
-                        <Link to="/">Homepage</Link>
-                    </li>
-                    <li>
-                        <Link to="/signIn">SignIn</Link>
-                    </li>
-                    <li>
-                        <Link to="/cart">Cart</Link>
-                    </li>
-                </ul>
-            </nav>
-        );
-    }
+const Navbar = () => {
+  return (
+    <div className='navbar'>
+      <img className='logo' src={assets.logo} alt="" />
+      <img className='profile' src={assets.profile_image} alt="" />
+    </div>
+  )
 }
-export default Navbar;
+
+export default Navbar
