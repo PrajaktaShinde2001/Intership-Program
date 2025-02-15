@@ -1,15 +1,39 @@
-const express = require("express");
-const dotenv = require("dotenv");
-const connectDB = require("./config/db");
+import express from "express"
+import cors from "cors"
+import { connectDB } from "./config/db.js"
+import foodRouter from "./routes/foodRoute.js"
+import userRouter from "./routes/userRoute.js"
+import 'dotenv/config'
+import cartRouter from "./routes/cartRoute.js"
+import orderRouter from "./routes/orderRoute.js"
 
-dotenv.config();
+
+// app config
+const app = express()
+const port = 4000
+
+// middleware
+app.use(express.json())
+app.use(cors())
+
+// db connection
 connectDB();
 
-const app = express();
-app.use(express.json());
+// api endpoints
+app.use("/api/food",foodRouter)
+app.use("/images",express.static('uploads'))
+app.use("/api/user",userRouter)
+app.use("/api/cart",cartRouter)
+app.use("/api/order",orderRouter)
 
-app.use("/api/auth", require("./routes/authRoutes"));
-app.use("/api/jobs", require("./routes/jobRoutes"));
+app.get("/",(req,res)=>{
+    res.send("API Working")
+})
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(port,()=>{
+    console.log(`Server Started on http://localhost:${port} `)
+})
+
+// bTYSnJdWb826NvPQ
+
+// mongodb+srv://prajaktashinde389:<db_password>@cluster0.dvz9g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
